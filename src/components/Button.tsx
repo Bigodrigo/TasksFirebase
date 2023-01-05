@@ -1,7 +1,6 @@
 import { Button as ButtonNativeBase, IButtonProps, Text } from 'native-base';
 import React from 'react';
-import { colors } from '../src/styles';
-import { fonts } from '../src/styles';
+import { colors, fonts } from "../styles";
 
 type Props = IButtonProps & {
   title: string;

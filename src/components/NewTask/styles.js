@@ -1,7 +1,6 @@
 import { Center, theme, useTheme } from 'native-base';
 import { StyleSheet } from 'react-native';
-import { fonts } from '../../src/styles';
-import { colors } from '../../src/styles';
+import { colors, fonts } from '../../../src/styles';
 //as vezes parece q n exporta direito!! Está diferente do vídeo
 import { MaterialIcons } from "@expo/vector-icons";
 

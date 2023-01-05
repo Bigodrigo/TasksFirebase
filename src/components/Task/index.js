@@ -4,7 +4,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 import { Swipeable } from "react-native-gesture-handler";
 
-import { colors, styles } from "../../src/styles";
+import { colors, styles } from "../../../src/styles";
 
 export function Task ({data, action}) {
     return (

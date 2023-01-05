@@ -2,12 +2,12 @@
 import React from "react";
 import { NativeBaseProvider, Center, VStack, HStack, Text, Button, IconButton, Spacer, View } from "native-base";
 //firebase
-import { auth } from "../../src/firebase";
+import { auth } from "../../../src/firebase";
 //detalhes
 import { styles } from "./styles";
 import { MaterialIcons } from "@expo/vector-icons";
 import { NewTask } from "../NewTask";
-import { colors } from "../../src/styles";
+import { colors, fonts } from '../../../src/styles';
 
 export function Header ({newTaskIsVisible,setNewTaskIsVisible}) {
 

@@ -1,19 +1,19 @@
 import React, { useState, useContext, useEffect } from "react";
 import { VStack, NativeBaseProvider, Center, StatusBar, View, Text, ScrollView } from "native-base";
 //importar cores e estilos?
-import { fonts, colors, styles } from "../styles";
+import { fonts, colors, styles } from "../../styles";
 import { Header } from "../../components/Header";
 import { NewTask } from "../../components/NewTask";
 import { Task } from "../../components/Task";
 import { Loading } from "../../components/Loading";
 
-import { randomKey } from "../utils/randomKey";
+import { randomKey } from "../../utils/randomKey";
 import { set } from "react-native-reanimated";
 //import do fire deve tá errado!
 import {  updateDoc, doc, serverTimestamp, setDoc, getDoc, deleteField, FieldPath, collection, query, where, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
+import { db } from "../../firebase";
 import { CurrentUserContext } from "../../components/Context/User";
-import { taskConverter } from "../utils/converter"; 
+import { taskConverter } from "../../utils/converter"; 
 
 export function Home ({children}) {
   const [ tasks, setTasks ] = useState([]);

@@ -4,15 +4,15 @@ import { Image, Alert } from "react-native";
 import { VStack, NativeBaseProvider, Center, Text, Icon, Link, Pressable } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
 //estilos e afins
-import { fonts, colors, styles } from "../styles";
+import { fonts, colors, styles } from "../../styles";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 //firebase
-import { auth, db } from "../firebase";
+import { auth, db } from "../../firebase";
 import { UserProvider, CurrentUserContext } from "../../components/Context/User";
 import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { collection, query, where, getDoc, doc, FieldPath, FieldValue } from "firebase/firestore";
-import { userConverter } from "../utils/converter"; 
+import { userConverter } from "../../utils/converter"; 
 //uid aqui ou na home?
 //rotas
 import { Home } from "../Home";

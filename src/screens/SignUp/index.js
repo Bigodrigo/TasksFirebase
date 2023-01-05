@@ -8,13 +8,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 //firebase
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, db } from "../firebase";
+import { auth, db } from "../../firebase";
 import { addDoc, collection, doc, setDoc, Timestamp } from "firebase/firestore";
 //Componentes
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
-import { fonts, colors } from "../styles";
-import { styles } from "../styles/index";
+import { styles, fonts, colors } from "../../styles";
 import { UserProvider, CurrentUserContext } from "../../components/Context/User";
 
 const SignUpSchema = yup.object({
