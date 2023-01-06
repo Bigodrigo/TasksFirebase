@@ -17,9 +17,9 @@ import * as SplashScreen from 'expo-splash-screen';
 SplashScreen.preventAutoHideAsync();
 
 //SB
-//export {default} from './storybook';
+export {default} from './storybook';
 
-export default function App() {
+export  function App() {
   const [appIsReady, setAppIsReady] = useState(false);
   let [fontsLoaded] = useFonts({
     JosefinSans_400Regular,
