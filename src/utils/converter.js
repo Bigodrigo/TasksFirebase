@@ -27,7 +27,7 @@
     }
 };
 //Tasks converter
-  export class Task {
+  export class TaskFB {
     constructor (content, date, id, isFinished, ) {
       this.content = content;
       this.date = date;
@@ -50,6 +50,6 @@
     },
     fromFirestore: (snapshot, options) => {
         const data = snapshot.data(options);
-        return new Task(data.content, data.date, data.id, data.isFinished);
+        return new TaskFB(data.content, data.date, data.id, data.isFinished);
     }
 };

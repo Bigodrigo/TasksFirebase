@@ -56,10 +56,10 @@ export function Login({children}) {
             uid: user.uid,
             logado: true,
             });
-            console.log(user.name);
-            console.log(user.email);
-            console.log(user.uid);
-            console.log(user.password);
+            // console.log(user.name);
+            // console.log(user.email);
+            // console.log(user.uid);
+            // console.log(user.password);
             //console.log(user.toString());
             //console.log("Document data:", testeSnap.data());
           } else {
