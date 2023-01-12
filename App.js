@@ -1,5 +1,5 @@
 //Estruturas do app
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useContext } from 'react';
 import { NativeBaseProvider, StatusBar, View } from "native-base";
 import { styles, colors } from "./src/styles/index";
 import { useFonts, JosefinSans_400Regular,JosefinSans_700Bold } from '@expo-google-fonts/josefin-sans';
@@ -9,7 +9,7 @@ import { Login } from './src/screens/Login';
 import { SignUp } from "./src/screens/SignUp";
 import { Home } from "./src/screens/Home";
 import { Routes } from './src/Routes';
-import { UserProvider } from './src/components/Context/User';
+import { UserProvider, CurrentUserContext } from './src/components/Context/User';
 //Parte de Loading
 import * as SplashScreen from 'expo-splash-screen';
 
@@ -21,6 +21,8 @@ SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
+  //const [logado, setLogado] = useState({logado} = useContext(CurrentUserContext));
+  //const {logado, setCurrentUser} = useContext(CurrentUserContext);
   let [fontsLoaded] = useFonts({
     JosefinSans_400Regular,
     JosefinSans_700Bold
@@ -68,7 +70,7 @@ export default function App() {
         <UserProvider>
           <View style={styles.app} onLayout={onLayoutRootView}>
             <StatusBar backgroundColor={colors.blue_secondary} barStyle="light-content" />
-            <Login />
+            <Home />
           </View>
         </UserProvider>
       </NativeBaseProvider>

@@ -15,16 +15,17 @@ import { collection, query, where, getDoc, doc, FieldPath, FieldValue } from "fi
 import { userConverter } from "../../utils/converter"; 
 //uid aqui ou na home?
 //rotas
-import { Home } from "../Home";
+import { SignUp } from "../SignUp";
 
-export function Login({children}) {
+export function Login({children},{fazerLogin,setFazerLogin}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [show, setShow] = React.useState(false);
-  const [logado, setLogado] = useState(false);
+  //const [inscricao, setInscricao] = useState(false);
+  //const [logado, setLogado] = useState(false);
   //eu estou usando o usercontext direto, o joao usou separado, pode dar erro aqui!!
-  const { setCurrentUser} = useContext(CurrentUserContext);
+  const {setCurrentUser} = useContext(CurrentUserContext);
 
   //Importante: Eu tentei fazer o yup controlar o envio de infos, mas deu errado, vou tirar por h e deixar mais simples!
 
@@ -43,8 +44,10 @@ export function Login({children}) {
           console.log("teste login entrou!");
           let user = userCredential.user;
           const uid = user.uid;
-          const teste = doc(db,"User", uid).withConverter(userConverter);
-          const testeSnap = await getDoc(teste);
+          //const teste = doc(db,"User", uid).withConverter(userConverter); MUDAR PARA UID!!
+          const docRef = doc(db,'T5j3lgQdt2QPrlOT1Jfqvx3O2Ds1','Infos').withConverter(userConverter)
+          const testeSnap = await getDoc(docRef);
+          //await setDoc(docRef, new TaskFB(taskObject.content,taskObject.date,taskObject.id,taskObject.isFinished))
 
           if (testeSnap.exists()) {
             const user = testeSnap.data();
@@ -54,34 +57,13 @@ export function Login({children}) {
             name: user.name,
             password: user.password,
             uid: user.uid,
-            logado: true,
+            //logado: true,
             });
-            // console.log(user.name);
-            // console.log(user.email);
-            // console.log(user.uid);
-            // console.log(user.password);
-            //console.log(user.toString());
-            //console.log("Document data:", testeSnap.data());
           } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
-          }
-         /* forEach((teste) => {
-          //const q = query(collection(db, "Testando"), where("doc.id", "==", uid));
-          //const querySnapshot = await getDocs(q);
-          //aqui q falta alguma magia!!!
-          //querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(teste.id, " => ", teste.data());
-          });*/
-
-          /*const querySnapshot = await getDocs(collection(db, "Testando"));
-            querySnapshot.forEach((doc) => {
-              console.log(doc.id, " => ", doc.data());
-            });*/
-                   
+          }    
           setLoading(false);
-          console.log(uid)
           //talvez precise do return para fechar o constante envio de infos! Aqui ele usa a função setLogin, para carregar?
         })
         .catch(error => 
@@ -89,7 +71,7 @@ export function Login({children}) {
           Alert.alert('Email ou senha inválidos!', 'Verifique as infos!')
           );
         setLoading(false);
-        setLogado(true);
+        setFazerLogin(!fazerLogin);
       };
 
   function resetPassword() { //código do vídeo
@@ -106,12 +88,11 @@ export function Login({children}) {
       console.log("Enviou email de troca de senha!!")
   })
     .catch(error => console.log(error));
-      
   };
 
-  return (
+  return ( 
     <NativeBaseProvider>
-      { logado  ? <Home /> : 
+      {/* { inscricao  ? <SignUp />  : } */}
       <VStack flex={1} px={10}>
         <Center>
           <Image
@@ -160,16 +141,14 @@ export function Login({children}) {
           />
           <Text style={styles.TextResetPassword}>
             <Link 
-              //onPress={console.log("clicou na navegação")}
+              //onPress={setInscricao(true)}
               //disabled={loading}?
             >
                 Criar uma conta
             </Link>
           </Text>
         </Center>
-      </VStack>}
+      </VStack>
     </NativeBaseProvider>
-  );
-
-  
+  );  
 }

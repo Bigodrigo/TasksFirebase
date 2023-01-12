@@ -15,6 +15,7 @@ import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import { styles, fonts, colors } from "../../styles";
 import { UserProvider, CurrentUserContext } from "../../components/Context/User";
+import { User, userConverter } from "../../utils/converter";
 
 const SignUpSchema = yup.object({
   name: yup.string().required("Informe o nome."),
@@ -28,15 +29,6 @@ const SignUpSchema = yup.object({
     .required("Repita a senha")
     .oneOf([yup.ref("password"), null], "A senha não é igual."),
 });
-
-/*const userData  = {
-  name: "",
-  email: "",
-  uid: "",
-  date: Timestamp.fromDate(new Date("December 10, 1815")),
-  objectExample: {
-    task: '',
-}};*/
 
 export  function SignUp({children}) {
   const [show, setShow] = React.useState(false);
@@ -54,30 +46,16 @@ export  function SignUp({children}) {
             return;
         };
         createUserWithEmailAndPassword(auth, data.email, data.password)
-            //.then(data=> console.log(email, password, data))
             .then(async(userCredential)  => {
               const user = userCredential.user;
               const uid = user.uid;
-              //acho q o displayname vem aqui
               console.log(uid);
-              /*setCurrentUser({
-                //tá pegando o uid do anterior!!
-                uid: uid,
-                displayName: yup.object.name,
-              })*/
-              await setDoc(doc(db, 'User', uid), {
-                email: data.email,
-                name: data.name,
-                password: data.password,
-                uid: uid,
-                //date: Timestamp.now(),
-             })
+              const docRef = doc(db,uid,'Infos').withConverter(userConverter)
+              await setDoc(docRef, new User(data.email,data.name,data.password,uid))
             })
             .catch(error => (
             Alert.alert(error.code, error.message)
             ));
-            //se o Uid for aleatório ele vai ser diferente do uid
-            //setCriado(true);
             };
 
   return (
