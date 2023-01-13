@@ -16,14 +16,14 @@ import { taskConverter, TaskFB } from "../../utils/converter";
 import { Login } from "../Login";
 import { SignUp } from "../SignUp";
 
-export async function Home ({children}) {
+export  function Home () {
   const [ tasks, setTasks ] = useState([]);
   const [ finishedTasks, setFinishedTasks ] = useState([]);
   const [ newTaskIsVisible, setNewTaskIsVisible ] = useState(false);
   const [ downloadingTasks, setDownloadingTasks ] = useState(true);
   //aqui tem q tirar o uid fixo e o downloading
-  const {uid, name, email, password, setCurrentUser} = await useContext(CurrentUserContext);
-  console.log(uid, 'na home antes de fazer login!!')
+  const {uid, name, email, password, setCurrentUser} =  useContext(CurrentUserContext);
+  //console.log(uid, 'na home antes de fazer login!!')
 
   //teste
   //testar com LET o TaskObject em todos os coisas!!
@@ -72,7 +72,7 @@ export async function Home ({children}) {
       setFinishedTasks(filter);
     });
   };
-  const fetchData = async () => {
+  async function fetchData() {
     console.log(uid, 'Os Awaits funcionaram?!?!')
     const q = query(collectionGroup(db,uid));
     const querySnapshot = await getDocs(q);
@@ -94,25 +94,26 @@ export async function Home ({children}) {
     setFinishedTasks(taskTrue)
       console.log(tasks)
       console.log(finishedTasks)
+      setDownloadingTasks(false);
       //return docID
   }
   
-  useEffect(async () => {
-    await fetchData();
-    console.log(uid)
-    // async function testingAwait() {
-    //   console.log 
-    //   let promise = new Promise((resolve, reject)=>{
-    //     //resolve(uid!=null)
-    //     setTimeout(()=>resolve('done!'),2000) 
-    //   })
-    //   let result = await promise
-    //   console.log(result)
-    //   console.log(uid)
-    // }
-    //  testingAwait();
-      setDownloadingTasks(false);
-  }, [])
+  // useEffect(async () => {
+  //   //await fetchData();
+  //   //console.log(uid)
+  //   // async function testingAwait() {
+  //   //   console.log 
+  //   //   let promise = new Promise((resolve, reject)=>{
+  //   //     //resolve(uid!=null)
+  //   //     setTimeout(()=>resolve('done!'),2000) 
+  //   //   })
+  //   //   let result = await promise
+  //   //   console.log(result)
+  //   //   console.log(uid)
+  //   // }
+  //   //  testingAwait();
+      
+  // }, [])
               
   return (
     <NativeBaseProvider>
@@ -129,7 +130,7 @@ export async function Home ({children}) {
           <Text color='white'>{uid}</Text>
           <Text color='white'>{name}</Text>
           { downloadingTasks
-            ? ( <Loading text={"Buscando Tarefas..."}/> )
+            ? ( <Loading text={"Buscando Tarefas..."} fetchData={fetchData}/> )
             : (
               <ScrollView 
                 showsVerticalScrollIndicator={false}

@@ -52,6 +52,7 @@ export  function SignUp({children,userNovo,setUserNovo}) {
               const docRef = doc(db,uid,'Infos').withConverter(userConverter)
               await setDoc(docRef, new User(data.email,data.name,data.password,uid))
               setUserNovo(!userNovo)
+              //adicionar logado no context?!
             })
             .catch(error => (
             Alert.alert(error.code, error.message)

@@ -26,7 +26,7 @@ export function Login({children,logado,setLogado}) {
   //eu estou usando o usercontext direto, o joao usou separado, pode dar erro aqui!!
   console.log(logado);
   console.log(userNovo)
-  const {setCurrentUser,changeUid} = useContext(CurrentUserContext);
+  const {setCurrentUser,changeUser} = useContext(CurrentUserContext);
 
   //Importante: Eu tentei fazer o yup controlar o envio de infos, mas deu errado, vou tirar por h e deixar mais simples!
 
@@ -60,12 +60,12 @@ export function Login({children,logado,setLogado}) {
             uid: user.uid,
             //logado: true,
             });
-            await changeUid({uid});
+            await changeUser({uid}).then(async()=>{
             console.log(uid, 'Foi pro context!!');
             console.log(logado);
             console.log(userNovo);
             setLoading(false);
-            setLogado(!logado);
+            setLogado(!logado);})
           } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
