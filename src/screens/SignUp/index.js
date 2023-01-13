@@ -30,13 +30,12 @@ const SignUpSchema = yup.object({
     .oneOf([yup.ref("password"), null], "A senha não é igual."),
 });
 
-export  function SignUp({children}) {
+export  function SignUp({children,userNovo,setUserNovo}) {
   const [show, setShow] = React.useState(false);
   const { control, handleSubmit, formState: { errors },  } = useForm({
     resolver: yupResolver(SignUpSchema),
   });
   const {setCurrentUser} = useContext(CurrentUserContext);
-  //const [criado, setCriado] = useState(false);
 
   function handleSignUp(data) {
     console.log(data);
@@ -52,6 +51,7 @@ export  function SignUp({children}) {
               console.log(uid);
               const docRef = doc(db,uid,'Infos').withConverter(userConverter)
               await setDoc(docRef, new User(data.email,data.name,data.password,uid))
+              setUserNovo(!userNovo)
             })
             .catch(error => (
             Alert.alert(error.code, error.message)

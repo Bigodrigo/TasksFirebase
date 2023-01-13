@@ -21,7 +21,9 @@ SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
-  //const [logado, setLogado] = useState({logado} = useContext(CurrentUserContext));
+  const [logado, setLogado] = useState(false);
+  
+  
   //const {logado, setCurrentUser} = useContext(CurrentUserContext);
   let [fontsLoaded] = useFonts({
     JosefinSans_400Regular,
@@ -70,9 +72,13 @@ export default function App() {
         <UserProvider>
           <View style={styles.app} onLayout={onLayoutRootView}>
             <StatusBar backgroundColor={colors.blue_secondary} barStyle="light-content" />
-            <Home />
+            { logado  ? <Home /> : <Login logado={logado} setLogado={setLogado}/>}
           </View>
         </UserProvider>
       </NativeBaseProvider>
   );
 }
+
+/* Comentários?!
+Consegui enviar {children,userNovo,setUserNovo,logado,setLogado} para o SignUp, então quando a pessoa logar já entraria na home!
+Mas desse jeito ela n pega o UID, posso melhorar em outro momento, por hora vou obrigar a voltar pra Login e fazer o Cadastro!! */

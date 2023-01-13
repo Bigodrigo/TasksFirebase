@@ -17,19 +17,20 @@ import { userConverter } from "../../utils/converter";
 //rotas
 import { SignUp } from "../SignUp";
 
-export function Login({children},{fazerLogin,setFazerLogin}) {
+export function Login({children,logado,setLogado}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [show, setShow] = React.useState(false);
-  //const [inscricao, setInscricao] = useState(false);
-  //const [logado, setLogado] = useState(false);
+  const [userNovo, setUserNovo] = useState(false);
   //eu estou usando o usercontext direto, o joao usou separado, pode dar erro aqui!!
-  const {setCurrentUser} = useContext(CurrentUserContext);
+  console.log(logado);
+  console.log(userNovo)
+  const {setCurrentUser,changeUid} = useContext(CurrentUserContext);
 
   //Importante: Eu tentei fazer o yup controlar o envio de infos, mas deu errado, vou tirar por h e deixar mais simples!
 
-   function handleLogin() {
+   async function handleLogin() {
     //com o yup precisa colocar data dentro dos () aqui em cima!!
     //console.log(data);
     setLoading(true);
@@ -40,15 +41,15 @@ export function Login({children},{fazerLogin,setFazerLogin}) {
             setLoading(false);
             return;
         };
-         signInWithEmailAndPassword(auth, email, password).then(async(userCredential) => {
+        await signInWithEmailAndPassword(auth, email, password).then(async(userCredential) => {
           console.log("teste login entrou!");
+          console.log(uid, 'Entrando no Login')
           let user = userCredential.user;
           const uid = user.uid;
           //const teste = doc(db,"User", uid).withConverter(userConverter); MUDAR PARA UID!!
-          const docRef = doc(db,'T5j3lgQdt2QPrlOT1Jfqvx3O2Ds1','Infos').withConverter(userConverter)
+          const docRef = doc(db,uid,'Infos').withConverter(userConverter)
           const testeSnap = await getDoc(docRef);
-          //await setDoc(docRef, new TaskFB(taskObject.content,taskObject.date,taskObject.id,taskObject.isFinished))
-
+          console.log(uid, 'Precisa ter mudado!!')
           if (testeSnap.exists()) {
             const user = testeSnap.data();
             console.log(user.toString());
@@ -59,19 +60,22 @@ export function Login({children},{fazerLogin,setFazerLogin}) {
             uid: user.uid,
             //logado: true,
             });
+            await changeUid({uid});
+            console.log(uid, 'Foi pro context!!');
+            console.log(logado);
+            console.log(userNovo);
+            setLoading(false);
+            setLogado(!logado);
           } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
           }    
-          setLoading(false);
           //talvez precise do return para fechar o constante envio de infos! Aqui ele usa a função setLogin, para carregar?
         })
         .catch(error => 
           console.log(error),
           Alert.alert('Email ou senha inválidos!', 'Verifique as infos!')
           );
-        setLoading(false);
-        setFazerLogin(!fazerLogin);
       };
 
   function resetPassword() { //código do vídeo
@@ -92,7 +96,8 @@ export function Login({children},{fazerLogin,setFazerLogin}) {
 
   return ( 
     <NativeBaseProvider>
-      {/* { inscricao  ? <SignUp />  : } */}
+      { userNovo  ? <SignUp userNovo={userNovo} setUserNovo={setUserNovo}/>
+      :
       <VStack flex={1} px={10}>
         <Center>
           <Image
@@ -128,7 +133,7 @@ export function Login({children},{fazerLogin,setFazerLogin}) {
             borderColor = {colors.blue_tertiary}
           />
           <Text style={styles.TextResetPassword}>
-            <Link onPress={resetPassword}>
+            <Link onPress={()=>resetPassword}>
                 Esqueceu a Senha?
             </Link>
           </Text>
@@ -141,14 +146,14 @@ export function Login({children},{fazerLogin,setFazerLogin}) {
           />
           <Text style={styles.TextResetPassword}>
             <Link 
-              //onPress={setInscricao(true)}
-              //disabled={loading}?
+              onPress={()=>setUserNovo(true)}
+              //disabled={loading}
             >
                 Criar uma conta
             </Link>
           </Text>
         </Center>
-      </VStack>
+      </VStack>}
     </NativeBaseProvider>
   );  
 }

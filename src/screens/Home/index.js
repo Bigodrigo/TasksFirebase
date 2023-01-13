@@ -14,15 +14,17 @@ import { db } from "../../firebase";
 import { CurrentUserContext } from "../../components/Context/User";
 import { taskConverter, TaskFB } from "../../utils/converter"; 
 import { Login } from "../Login";
+import { SignUp } from "../SignUp";
 
-export function Home ({children}) {
+export async function Home ({children}) {
   const [ tasks, setTasks ] = useState([]);
   const [ finishedTasks, setFinishedTasks ] = useState([]);
   const [ newTaskIsVisible, setNewTaskIsVisible ] = useState(false);
   const [ downloadingTasks, setDownloadingTasks ] = useState(true);
   //aqui tem q tirar o uid fixo e o downloading
-  const {uid, name, email, password, setCurrentUser} = useContext(CurrentUserContext);
-  const [fazerLogin, setFazerLogin] = useState(true);
+  const {uid, name, email, password, setCurrentUser} = await useContext(CurrentUserContext);
+  console.log(uid, 'na home antes de fazer login!!')
+
   //teste
   //testar com LET o TaskObject em todos os coisas!!
   const docID = [];
@@ -34,7 +36,7 @@ export function Home ({children}) {
       id: randomKey(),
       isFinished: false,
     };
-    const docRef = doc(db,'T5j3lgQdt2QPrlOT1Jfqvx3O2Ds1',taskObject.content).withConverter(taskConverter)
+    const docRef = doc(db,uid,taskObject.content).withConverter(taskConverter)
     await setDoc(docRef, new TaskFB(taskObject.content,taskObject.date,taskObject.id,taskObject.isFinished)) //sobrescreve!! {[taskObject.content]:taskObject},{merge:true} //,[taskObject.content]),taskObject
       .then(() => {
         setTasks([taskObject, ...tasks])
@@ -53,7 +55,7 @@ export function Home ({children}) {
       id: randomKey(),
       isFinished:true,
     };
-    const docRef = doc(db,'T5j3lgQdt2QPrlOT1Jfqvx3O2Ds1',taskObject.content).withConverter(taskConverter)
+    const docRef = doc(db,uid,taskObject.content).withConverter(taskConverter)
     await setDoc(docRef, new TaskFB(taskObject.content,taskObject.date,taskObject.id,taskObject.isFinished),{merge:true}) //sobrescreve!!,{merge:true}
     .then(() => {
       setFinishedTasks([taskObject, ...newFinishedTasks])
@@ -64,14 +66,15 @@ export function Home ({children}) {
     const filter = finishedTasks.filter(item => item.id !== id);
     const taskFiltered = finishedTasks.filter(item => item.id == id);
     console.log(taskFiltered[0].content)
-    const docRef = doc(db,'T5j3lgQdt2QPrlOT1Jfqvx3O2Ds1',taskFiltered[0].content)
+    const docRef = doc(db,uid,taskFiltered[0].content)
     await deleteDoc(docRef)
     .then(() => {
       setFinishedTasks(filter);
     });
   };
   const fetchData = async () => {
-    const q = query(collectionGroup(db,'T5j3lgQdt2QPrlOT1Jfqvx3O2Ds1'));
+    console.log(uid, 'Os Awaits funcionaram?!?!')
+    const q = query(collectionGroup(db,uid));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async (doc) => {
       docID.push(doc.id)
@@ -94,9 +97,8 @@ export function Home ({children}) {
       //return docID
   }
   
-  useEffect(() => {
-    fetchData();
-    console.log(fazerLogin)
+  useEffect(async () => {
+    await fetchData();
     console.log(uid)
     // async function testingAwait() {
     //   console.log 
@@ -114,8 +116,6 @@ export function Home ({children}) {
               
   return (
     <NativeBaseProvider>
-      { fazerLogin  ? <Login fazerLogin={fazerLogin} setFazerLogin={setFazerLogin}/>
-      :
       <VStack>
         <Center>
           <StatusBar 
@@ -154,7 +154,6 @@ export function Home ({children}) {
           }
         </Center>
       </VStack>
-      }
     </NativeBaseProvider>
   )
 }
