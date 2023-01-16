@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Image, Alert } from "react-native";
 import { VStack, NativeBaseProvider, Center, Text, Icon, Pressable } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -38,8 +38,8 @@ export  function SignUp({children,userNovo,setUserNovo}) {
   const {setCurrentUser} = useContext(CurrentUserContext);
 
   function handleSignUp(data) {
-    console.log(data);
-    console.log(data.email,data.password);
+    //console.log(data);
+    //console.log(data.email,data.password);
         if(data.email === '' || data.password === '') {
             Alert.alert('Algo deu errado', 'Preencha todos os campos primeiro!');
             return;
@@ -48,7 +48,7 @@ export  function SignUp({children,userNovo,setUserNovo}) {
             .then(async(userCredential)  => {
               const user = userCredential.user;
               const uid = user.uid;
-              console.log(uid);
+              //console.log(uid);
               const docRef = doc(db,uid,'Infos').withConverter(userConverter)
               await setDoc(docRef, new User(data.email,data.name,data.password,uid))
               setUserNovo(!userNovo)

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useCallback } from "react";
+import React, { useState, useContext } from "react";
 import { VStack, NativeBaseProvider, Center, StatusBar, View, Text, ScrollView } from "native-base";
 //importar cores e estilos?
 import { fonts, colors, styles } from "../../styles";
@@ -9,14 +9,12 @@ import { Loading } from "../../components/Loading";
 
 import { randomKey } from "../../utils/randomKey";
 //import do fire deve tá errado!
-import {  deleteDoc, doc, serverTimestamp, setDoc, getDoc, collection, query, where, getDocs, collectionGroup, withConverter } from "firebase/firestore";
+import { deleteDoc, doc, serverTimestamp, setDoc, query,getDocs, collectionGroup, withConverter } from "firebase/firestore";
 import { db } from "../../firebase";
 import { CurrentUserContext } from "../../components/Context/User";
 import { taskConverter, TaskFB } from "../../utils/converter"; 
-import { Login } from "../Login";
-import { SignUp } from "../SignUp";
 
-export  function Home () {
+export  function Home ({children,logado,setLogado}) {
   const [ tasks, setTasks ] = useState([]);
   const [ finishedTasks, setFinishedTasks ] = useState([]);
   const [ newTaskIsVisible, setNewTaskIsVisible ] = useState(false);
@@ -65,7 +63,7 @@ export  function Home () {
   async function deleteTask(id) {
     const filter = finishedTasks.filter(item => item.id !== id);
     const taskFiltered = finishedTasks.filter(item => item.id == id);
-    console.log(taskFiltered[0].content)
+    //console.log(taskFiltered[0].content)
     const docRef = doc(db,uid,taskFiltered[0].content)
     await deleteDoc(docRef)
     .then(() => {
@@ -73,12 +71,12 @@ export  function Home () {
     });
   };
   async function fetchData() {
-    console.log(uid, 'Os Awaits funcionaram?!?!')
+    //console.log(uid, 'Os Awaits funcionaram?!?!')
     const q = query(collectionGroup(db,uid));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async (doc) => {
       docID.push(doc.id)
-      console.log(docID)
+      //console.log(docID)
       let r = doc.data()
       const taskObject = {
         content: r.content,
@@ -92,29 +90,11 @@ export  function Home () {
     setTasks(taskFalse)
     const taskTrue = tasks.filter(item => item.isFinished == true);
     setFinishedTasks(taskTrue)
-      console.log(tasks)
-      console.log(finishedTasks)
+      //console.log(tasks)
+      //console.log(finishedTasks)
       setDownloadingTasks(false);
-      //return docID
   }
-  
-  // useEffect(async () => {
-  //   //await fetchData();
-  //   //console.log(uid)
-  //   // async function testingAwait() {
-  //   //   console.log 
-  //   //   let promise = new Promise((resolve, reject)=>{
-  //   //     //resolve(uid!=null)
-  //   //     setTimeout(()=>resolve('done!'),2000) 
-  //   //   })
-  //   //   let result = await promise
-  //   //   console.log(result)
-  //   //   console.log(uid)
-  //   // }
-  //   //  testingAwait();
-      
-  // }, [])
-              
+   
   return (
     <NativeBaseProvider>
       <VStack>
@@ -125,10 +105,12 @@ export  function Home () {
           <Header 
             newTaskIsVisible={newTaskIsVisible}
             setNewTaskIsVisible={setNewTaskIsVisible}
+            logado={logado}
+            setLogado={setLogado}
           />
           { newTaskIsVisible && <NewTask addNewTask={addNewTask} />}
-          <Text color='white'>{uid}</Text>
-          <Text color='white'>{name}</Text>
+          {/* <Text color='white'>{uid}</Text>
+          <Text color='white'>{name}</Text> */}
           { downloadingTasks
             ? ( <Loading text={"Buscando Tarefas..."} fetchData={fetchData}/> )
             : (

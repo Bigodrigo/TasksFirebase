@@ -3,7 +3,7 @@ import { Button } from '../Button';
 import { colors } from '../../styles';
 
 
-export function Loading({text,fetchData}){
+export function Loading({fetchData}){
     return (
         <View mt={50}>
             <Center>
@@ -17,6 +17,7 @@ export function Loading({text,fetchData}){
                     title="Buscar Tasks!!" 
                     onPress={()=>fetchData()} 
                     backgroundColor = {colors.blue_tertiary}
+                    my={20}
                 />
             </Center>
         </View>

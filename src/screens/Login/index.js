@@ -11,7 +11,7 @@ import { Button } from "../../components/Button";
 import { auth, db } from "../../firebase";
 import { UserProvider, CurrentUserContext } from "../../components/Context/User";
 import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
-import { collection, query, where, getDoc, doc, FieldPath, FieldValue } from "firebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
 import { userConverter } from "../../utils/converter"; 
 //uid aqui ou na home?
 //rotas
@@ -24,8 +24,6 @@ export function Login({children,logado,setLogado}) {
   const [show, setShow] = React.useState(false);
   const [userNovo, setUserNovo] = useState(false);
   //eu estou usando o usercontext direto, o joao usou separado, pode dar erro aqui!!
-  console.log(logado);
-  console.log(userNovo)
   const {setCurrentUser,changeUser} = useContext(CurrentUserContext);
 
   //Importante: Eu tentei fazer o yup controlar o envio de infos, mas deu errado, vou tirar por h e deixar mais simples!
@@ -43,16 +41,16 @@ export function Login({children,logado,setLogado}) {
         };
         await signInWithEmailAndPassword(auth, email, password).then(async(userCredential) => {
           console.log("teste login entrou!");
-          console.log(uid, 'Entrando no Login')
+          //console.log(uid, 'Entrando no Login')
           let user = userCredential.user;
           const uid = user.uid;
           //const teste = doc(db,"User", uid).withConverter(userConverter); MUDAR PARA UID!!
           const docRef = doc(db,uid,'Infos').withConverter(userConverter)
           const testeSnap = await getDoc(docRef);
-          console.log(uid, 'Precisa ter mudado!!')
+          //console.log(uid, 'Precisa ter mudado!!')
           if (testeSnap.exists()) {
             const user = testeSnap.data();
-            console.log(user.toString());
+            //console.log(user.toString());
             setCurrentUser({
             email: user.email,
             name: user.name,
@@ -61,9 +59,9 @@ export function Login({children,logado,setLogado}) {
             //logado: true,
             });
             await changeUser({uid}).then(async()=>{
-            console.log(uid, 'Foi pro context!!');
-            console.log(logado);
-            console.log(userNovo);
+            //console.log(uid, 'Foi pro context!!');
+            //console.log(logado);
+            //console.log(userNovo);
             setLoading(false);
             setLogado(!logado);})
           } else {
@@ -80,7 +78,7 @@ export function Login({children,logado,setLogado}) {
 
   function resetPassword() { //código do vídeo
     //com o yup precisa colocar data dentro dos () aqui em cima!!
-    console.log(email)
+    //console.log(email)
     if(email === '') {
       //o código n está passando por aqui, talvez tenha q definir data email ='' primeiro?!
       Alert.alert('Algo deu errado!', ' Preencha o campo de email para redefinir nova senha');

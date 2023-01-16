@@ -6,9 +6,7 @@ import { useFonts, JosefinSans_400Regular,JosefinSans_700Bold } from '@expo-goog
 //import { GestureHandlerRootView } from 'react-native-gesture-handler';
 //Rotas de navegação
 import { Login } from './src/screens/Login';
-import { SignUp } from "./src/screens/SignUp";
 import { Home } from "./src/screens/Home";
-import { Routes } from './src/Routes';
 import { UserProvider, CurrentUserContext } from './src/components/Context/User';
 //Parte de Loading
 import * as SplashScreen from 'expo-splash-screen';
@@ -72,7 +70,7 @@ export default function App() {
         <UserProvider>
           <View style={styles.app} onLayout={onLayoutRootView}>
             <StatusBar backgroundColor={colors.blue_secondary} barStyle="light-content" />
-            { logado  ? <Home /> : <Login logado={logado} setLogado={setLogado}/>}
+            { logado  ? <Home logado={logado} setLogado={setLogado}/> : <Login logado={logado} setLogado={setLogado}/>}
           </View>
         </UserProvider>
       </NativeBaseProvider>
@@ -81,4 +79,6 @@ export default function App() {
 
 /* Comentários?!
 Consegui enviar {children,userNovo,setUserNovo,logado,setLogado} para o SignUp, então quando a pessoa logar já entraria na home!
-Mas desse jeito ela n pega o UID, posso melhorar em outro momento, por hora vou obrigar a voltar pra Login e fazer o Cadastro!! */
+Mas desse jeito ela n pega o UID, posso melhorar em outro momento, por hora vou obrigar a voltar pra Login e fazer o Cadastro!! 
+16/01 - Arrumei o SignOut!! Seria interessante colocar mais comentários no código!! Acredito q o android ainda n está 100% Falta arrumar o thema e estilos?!
+*/
