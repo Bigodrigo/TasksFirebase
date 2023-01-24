@@ -9,7 +9,7 @@ import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 //firebase
 import { auth, db } from "../../firebase";
-import { UserProvider, CurrentUserContext } from "../../components/Context/User";
+import { CurrentUserContext } from "../../components/Context/User";
 import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { getDoc, doc } from "firebase/firestore";
 import { userConverter } from "../../utils/converter"; 
@@ -17,14 +17,14 @@ import { userConverter } from "../../utils/converter";
 //rotas
 import { SignUp } from "../SignUp";
 
-export function Login({children,logado,setLogado}) {
+export function Login({children}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [show, setShow] = React.useState(false);
   const [userNovo, setUserNovo] = useState(false);
   //eu estou usando o usercontext direto, o joao usou separado, pode dar erro aqui!!
-  const {setCurrentUser,changeUser} = useContext(CurrentUserContext);
+  const {setCurrentUser, logado, setLogado, login, logout} = useContext(CurrentUserContext);
 
   //Importante: Eu tentei fazer o yup controlar o envio de infos, mas deu errado, vou tirar por h e deixar mais simples!
 
@@ -56,15 +56,10 @@ export function Login({children,logado,setLogado}) {
             name: user.name,
             password: user.password,
             uid: user.uid,
-            //logado: true,
             });
-            await changeUser({uid}).then(async()=>{
-            //console.log(uid, 'Foi pro context!!');
-            //console.log(logado);
-            //console.log(userNovo);
             setLoading(false);
-            setLogado(!logado);})
-          } else {
+            login();}
+             else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
           }    
@@ -72,7 +67,7 @@ export function Login({children,logado,setLogado}) {
         })
         .catch(error => 
           console.log(error),
-          Alert.alert('Email ou senha inválidos!', 'Verifique as infos!')
+          //Alert.alert('Email ou senha inválidos!', 'Verifique as infos!')
           );
       };
 
@@ -107,8 +102,7 @@ export function Login({children,logado,setLogado}) {
           </Text>
           <Input
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            //poderia ser substituido por onChangeText={setEmail}
+            onChangeText={setEmail}
             style={styles.inputPassword}
             placeholder="E-mail"
             placeholderTextColor={colors.blue_tertiary}
@@ -123,16 +117,19 @@ export function Login({children,logado,setLogado}) {
             color={colors.blue_tertiary} // n ficou funcional, voltar aqui
             /></Pressable>}
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChangeText={setPassword}
             style={styles.inputPassword}
             placeholder="Senha"
             placeholderTextColor={colors.blue_tertiary}
             backgroundColor = {colors.blue_secondary}
             borderColor = {colors.blue_tertiary}
           />
-          <Text style={styles.TextResetPassword}>
-            <Link onPress={()=>resetPassword}>
-                Esqueceu a Senha?
+          <Text style={{ color: "white"}}  mt={10} mb={10}>
+            <Link 
+              onPress={()=>setUserNovo(true)}
+              //disabled={loading}
+            >
+                Criar uma conta
             </Link>
           </Text>
           <Button 
@@ -142,12 +139,9 @@ export function Login({children,logado,setLogado}) {
             backgroundColor = {colors.blue_tertiary}
             //aqui no terceiro vídeo ele coloca em 1h um loading, para barrar o envio infinito!
           />
-          <Text style={styles.TextResetPassword}>
-            <Link 
-              onPress={()=>setUserNovo(true)}
-              //disabled={loading}
-            >
-                Criar uma conta
+          <Text style={{ color: colors.blue_secondary, fontSize: 16}} mt={10} mb={20}>
+            <Link onPress={()=>resetPassword}>
+                Esqueceu a Senha?
             </Link>
           </Text>
         </Center>

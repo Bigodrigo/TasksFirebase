@@ -5,10 +5,9 @@ import { NativeBaseProvider, Center, VStack, HStack, Text, Button, IconButton, S
 //firebase
 import { auth } from "../../../src/firebase";
 //detalhes
-import { styles } from "./styles";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Input } from "../Input";
-import { colors, fonts } from '../../../src/styles';
+import { colors, fonts, styles } from '../../../src/styles';
 
 export function NewTask ({addNewTask}) {
   const [ task, setTask ] = useState('');
@@ -26,7 +25,7 @@ export function NewTask ({addNewTask}) {
   };
 
     return (
-            <View style={styles.container} >
+            <View style={styles.containerNewTask} >
                 <Input
                   //provavelmente vai dar errado! Olhar o Login para mudar o onchangetext e value!! Hover!
                   value={task}

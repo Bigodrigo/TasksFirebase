@@ -47,8 +47,8 @@ export const styles = StyleSheet.create({
         fontSize: 18,
         color: colors.blue_tertiary,
     },
-    TextResetPassword: {
-        color: colors.blue_tertiary,
+    textResetPassword: {
+        color: colors.blue_secondary,
         fontSize: 16,
         marginTop: 10,
         marginBottom: 20,
@@ -97,6 +97,32 @@ export const styles = StyleSheet.create({
         fontFamily: fonts.regular,
         fontSize: 15,
         lineHeight:15,
+    },
+        containerHeader: {
+        paddingHorizontal: 20,
+        paddingVertical: 20,
+        backgroundColor: colors.blue_secondary,
+        color: colors.blue_tertiary,
+    },
+    titleHeader: {
+        color: colors.blue_tertiary,
+        fontFamily: fonts.bold,
+        fontSize: 25,
+        paddingTop:10,
+    },
+    containerNewTask: {
+        width:'100%',
+        padding: 20,
+        backgroundColor: colors.blue_tertiary,
+        borderBottomLeftRadius: 7,
+        borderBottomRightRadius: 7,
+        alignItems: 'center',
+    },
+    containerButtons:{
+        flexDirection: 'row',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'space-between',
     },
 
 })

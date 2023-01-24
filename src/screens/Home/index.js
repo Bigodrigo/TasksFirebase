@@ -14,13 +14,13 @@ import { db } from "../../firebase";
 import { CurrentUserContext } from "../../components/Context/User";
 import { taskConverter, TaskFB } from "../../utils/converter"; 
 
-export  function Home ({children,logado,setLogado}) {
+export  function Home ({children}) {
   const [ tasks, setTasks ] = useState([]);
   const [ finishedTasks, setFinishedTasks ] = useState([]);
   const [ newTaskIsVisible, setNewTaskIsVisible ] = useState(false);
   const [ downloadingTasks, setDownloadingTasks ] = useState(true);
   //aqui tem q tirar o uid fixo e o downloading
-  const {uid, name, email, password, setCurrentUser} =  useContext(CurrentUserContext);
+  const {uid, name, email, password, setCurrentUser, logado, setLogado, logout} =  useContext(CurrentUserContext);
   //console.log(uid, 'na home antes de fazer login!!')
 
   //teste
@@ -105,8 +105,6 @@ export  function Home ({children,logado,setLogado}) {
           <Header 
             newTaskIsVisible={newTaskIsVisible}
             setNewTaskIsVisible={setNewTaskIsVisible}
-            logado={logado}
-            setLogado={setLogado}
           />
           { newTaskIsVisible && <NewTask addNewTask={addNewTask} />}
           {/* <Text color='white'>{uid}</Text>

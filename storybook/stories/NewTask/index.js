@@ -26,7 +26,7 @@ export function NewTask ({addNewTask}) {
   };
 
     return (
-              <NativeBaseProvider>
+          <NativeBaseProvider>
             <View style={styles.container} >
                 <Input
                   //provavelmente vai dar errado! Olhar o Login para mudar o onchangetext e value!! Hover!
@@ -55,6 +55,6 @@ export function NewTask ({addNewTask}) {
                   </Button>
                 </View>
             </View>
-                  </NativeBaseProvider>
+          </NativeBaseProvider>
     )
 }

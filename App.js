@@ -5,8 +5,7 @@ import { styles, colors } from "./src/styles/index";
 import { useFonts, JosefinSans_400Regular,JosefinSans_700Bold } from '@expo-google-fonts/josefin-sans';
 //import { GestureHandlerRootView } from 'react-native-gesture-handler';
 //Rotas de navegação
-import { Login } from './src/screens/Login';
-import { Home } from "./src/screens/Home";
+import Routes from './src/Routes';
 import { UserProvider, CurrentUserContext } from './src/components/Context/User';
 //Parte de Loading
 import * as SplashScreen from 'expo-splash-screen';
@@ -19,8 +18,6 @@ SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
-  const [logado, setLogado] = useState(false);
-  
   
   //const {logado, setCurrentUser} = useContext(CurrentUserContext);
   let [fontsLoaded] = useFonts({
@@ -70,7 +67,7 @@ export default function App() {
         <UserProvider>
           <View style={styles.app} onLayout={onLayoutRootView}>
             <StatusBar backgroundColor={colors.blue_secondary} barStyle="light-content" />
-            { logado  ? <Home logado={logado} setLogado={setLogado}/> : <Login logado={logado} setLogado={setLogado}/>}
+            <Routes />
           </View>
         </UserProvider>
       </NativeBaseProvider>
