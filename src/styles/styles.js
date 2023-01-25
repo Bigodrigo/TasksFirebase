@@ -48,10 +48,10 @@ export const styles = StyleSheet.create({
         color: colors.blue_tertiary,
     },
     textResetPassword: {
-        color: colors.blue_secondary,
+        color: colors.blue_tertiary,
         fontSize: 16,
-        marginTop: 10,
-        marginBottom: 20,
+        marginTop: 20,
+        marginBottom: 30,
     },
     containerTasks: {
         flex: 1,

@@ -124,14 +124,14 @@ export function Login({children}) {
             backgroundColor = {colors.blue_secondary}
             borderColor = {colors.blue_tertiary}
           />
-          <Text style={{ color: "white"}}  mt={10} mb={10}>
-            <Link 
-              onPress={()=>setUserNovo(true)}
-              //disabled={loading}
-            >
+          <Link 
+            onPress={()=>setUserNovo(true)}
+            //disabled={loading}
+          >
+            <Text style={styles.textResetPassword}>
                 Criar uma conta
-            </Link>
-          </Text>
+            </Text>
+          </Link>
           <Button 
             title="ENTRAR" 
             onPress={handleLogin} 
@@ -139,11 +139,11 @@ export function Login({children}) {
             backgroundColor = {colors.blue_tertiary}
             //aqui no terceiro vídeo ele coloca em 1h um loading, para barrar o envio infinito!
           />
-          <Text style={{ color: colors.blue_secondary, fontSize: 16}} mt={10} mb={20}>
-            <Link onPress={()=>resetPassword}>
+          <Link onPress={()=>resetPassword}>
+            <Text  style={styles.textResetPassword}>
                 Esqueceu a Senha?
-            </Link>
-          </Text>
+            </Text>
+          </Link>
         </Center>
       </VStack>}
     </NativeBaseProvider>
