@@ -1,14 +1,9 @@
-// .storybook/preview.js
-
-import React from 'react';
-import {NativeBaseProvider} from 'native-base';
-
-import { ThemeProvider } from 'styled-components';
-
-export const decorators = [
-  (Story) => (
-    <NativeBaseProvider>
-      {Story()}
-    </NativeBaseProvider>
-  ),
-];
+export const parameters = {
+  actions: { argTypesRegex: "^on[A-Z].*" },
+  controls: {
+    matchers: {
+      color: /(background|color)$/i,
+      date: /Date$/,
+    },
+  },
+}

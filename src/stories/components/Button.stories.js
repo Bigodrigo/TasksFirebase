@@ -1,0 +1,44 @@
+// import { MaterialIcons } from "@expo/vector-icons"; 
+// import {  Icon  } from 'native-base'
+import React from 'react';
+import { NativeBaseProvider } from 'native-base'
+
+//Estilos
+//import { THEME } from '../../styles/theme'
+import { Button } from '../../components/Button';
+
+export default {
+  title: "app/Componentes/Button",
+  component: Button,
+  argTypes: { 
+    title: { description: 'Texto do botão' },
+    //iconName: { description: 'Nome do ícone dentro da biblioteca MaterialIcons' },
+ },
+  parameters: {
+    docs: {
+      description: {
+        component: 'Componente utilizado para o padrão de botões.'
+      },
+    },
+  },
+} 
+
+export const Basic = (args) => (
+  <NativeBaseProvider >
+      <Button 
+        //_pressed={{ bgColor: 'gray.300' }}
+        //_hover={{ bgColor: 'white' }}
+        {...args} 
+      />
+  </NativeBaseProvider>
+);
+
+Basic.args = {
+  title: 'ENTRAR',
+  //iconLib: MaterialIcons, 
+  //iconName: 'star'
+};
+
+/* 
+src/components/Button.js src/components/ItemsBox.js src/stories/Button.jsx src/stories/Button.stories.jsx src/stories/Header.jsx src/stories/UploadImage.stories.js src/stories/UserData.stories.js src/stories/ButtonHome.stories.js src/stories/ItemsBox.stories.js src/stories/SearchBar.stories.js src/stories/ServiceItems.stories.js
+ */
