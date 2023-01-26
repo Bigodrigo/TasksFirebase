@@ -23,12 +23,14 @@ export default {
 
 export const Basic = (args) => (
   <NativeBaseProvider>
-    <div style={styles.app}>
-      <Loading 
+    <div style={{width:400}}>
+      <div style={styles.app}>
+        <Loading 
         //_pressed={{ bgColor: 'gray.300' }}
         //_hover={{ bgColor: 'white' }}
         {...args} 
-      />
+        />
+      </div>
     </div>
   </NativeBaseProvider>
 );

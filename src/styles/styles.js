@@ -98,7 +98,7 @@ export const styles = StyleSheet.create({
         fontSize: 15,
         lineHeight:15,
     },
-        containerHeader: {
+    containerHeader: {
         paddingHorizontal: 20,
         paddingVertical: 20,
         backgroundColor: colors.blue_secondary,

@@ -4,7 +4,6 @@ export const CurrentUserContext = createContext();
 
 export  const UserProvider =  ({ children })  => {
     const [{ email, name, password, uid, userNovo}, setCurrentUser] = useState({
-        //displayName:'',
         email:'',
         name:'',
         password:'',

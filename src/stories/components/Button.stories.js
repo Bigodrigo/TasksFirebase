@@ -4,7 +4,7 @@ import React from 'react';
 import { NativeBaseProvider } from 'native-base'
 
 //Estilos
-//import { THEME } from '../../styles/theme'
+import { styles } from '../../styles'
 import { Button } from '../../components/Button';
 
 export default {
@@ -25,11 +25,17 @@ export default {
 
 export const Basic = (args) => (
   <NativeBaseProvider >
-      <Button 
-        //_pressed={{ bgColor: 'gray.300' }}
-        //_hover={{ bgColor: 'white' }}
-        {...args} 
-      />
+    <div style={{width:400}}>
+      <div style={styles.input}>
+        <div style={styles.container}>
+          <Button 
+            //_pressed={{ bgColor: 'gray.300' }}
+            //_hover={{ bgColor: 'white' }}
+            {...args} 
+          />
+        </div>
+      </div>
+    </div>
   </NativeBaseProvider>
 );
 

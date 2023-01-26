@@ -8,7 +8,7 @@ import { UserProvider } from '../../components/Context/User';
 //import { NavigationContainer } from '@react-navigation/native';
 
   export default {
-    title: "screens/SignUp",
+    title: "app/Screens/SignUp",
     component: SignUp,
     decorators: [
       (Story) => (
