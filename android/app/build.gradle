@@ -1,5 +1,5 @@
 apply plugin: "com.android.application"
-apply plugin: "com.google.gms.google-services"
+apply plugin: "com.google.gms.google-services" //ao adicionar o app no FB isso aqui é um pouco dif!
 
 import com.android.build.OutputFile
 
@@ -281,7 +281,7 @@ dependencies {
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
-    implementation platform('com.google.firebase:firebase-bom:31.1.1') //adicionei pelo FB!
+    implementation platform('com.google.firebase:firebase-bom:31.2.3') //adicionei pelo FB!
 
     implementation 'com.google.firebase:firebase-analytics'
 

@@ -19,12 +19,7 @@ export  function Home ({children}) {
   const [ finishedTasks, setFinishedTasks ] = useState([]);
   const [ newTaskIsVisible, setNewTaskIsVisible ] = useState(false);
   const [ downloadingTasks, setDownloadingTasks ] = useState(true);
-  //aqui tem q tirar o uid fixo e o downloading
   const {uid, name, email, password, setCurrentUser, logado, setLogado, logout} =  useContext(CurrentUserContext);
-  //console.log(uid, 'na home antes de fazer login!!')
-
-  //teste
-  //testar com LET o TaskObject em todos os coisas!!
   const docID = [];
 
   async function addNewTask(content) {   
@@ -63,7 +58,6 @@ export  function Home ({children}) {
   async function deleteTask(id) {
     const filter = finishedTasks.filter(item => item.id !== id);
     const taskFiltered = finishedTasks.filter(item => item.id == id);
-    //console.log(taskFiltered[0].content)
     const docRef = doc(db,uid,taskFiltered[0].content)
     await deleteDoc(docRef)
     .then(() => {
@@ -71,12 +65,10 @@ export  function Home ({children}) {
     });
   };
   async function fetchData() {
-    //console.log(uid, 'Os Awaits funcionaram?!?!')
     const q = query(collectionGroup(db,uid));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async (doc) => {
       docID.push(doc.id)
-      //console.log(docID)
       let r = doc.data()
       const taskObject = {
         content: r.content,
@@ -90,9 +82,7 @@ export  function Home ({children}) {
     setTasks(taskFalse)
     const taskTrue = tasks.filter(item => item.isFinished == true);
     setFinishedTasks(taskTrue)
-      //console.log(tasks)
-      //console.log(finishedTasks)
-      setDownloadingTasks(false);
+    setDownloadingTasks(false);
   }
    
   return (
@@ -107,8 +97,6 @@ export  function Home ({children}) {
             setNewTaskIsVisible={setNewTaskIsVisible}
           />
           { newTaskIsVisible && <NewTask addNewTask={addNewTask} />}
-          {/* <Text color='white'>{uid}</Text>
-          <Text color='white'>{name}</Text> */}
           { downloadingTasks
             ? ( <Loading text={"Buscando Tarefas..."} fetchData={fetchData}/> )
             : (

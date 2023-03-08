@@ -1,34 +1,33 @@
 {
   "project_info": {
-    "project_number": "1024666144835",
-    "firebase_url": "https://teste-do-fb-7c46f-default-rtdb.firebaseio.com",
-    "project_id": "teste-do-fb-7c46f",
-    "storage_bucket": "teste-do-fb-7c46f.appspot.com"
+    "project_number": "886879977268",
+    "project_id": "testefbandroid-998fd",
+    "storage_bucket": "testefbandroid-998fd.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1024666144835:android:d1c71aa3ac649d289644f6",
+        "mobilesdk_app_id": "1:886879977268:android:78b30efc2b632c1dc9af61",
         "android_client_info": {
           "package_name": "com.testefbandroid"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1024666144835-93heu6c1jj9491ft7nm2kajd6qh5scdl.apps.googleusercontent.com",
+          "client_id": "886879977268-nr365buldeuhncitfimub88jlub65a2e.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAY95aqKyVC58DCcWPr0IqgTF4H-nTEQWs"
+          "current_key": "AIzaSyCzVL2HH1smu7ycOsCvot-0UAfphFtnu10"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1024666144835-93heu6c1jj9491ft7nm2kajd6qh5scdl.apps.googleusercontent.com",
+              "client_id": "886879977268-nr365buldeuhncitfimub88jlub65a2e.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

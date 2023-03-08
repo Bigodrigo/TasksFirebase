@@ -14,7 +14,6 @@ import { colors, fonts, styles } from '../../../src/styles';
 export function Header ({newTaskIsVisible,setNewTaskIsVisible}) {
   const { logout } = useContext(CurrentUserContext);
   async function handleSignOut() { 
-        //console.log("Tentando Sair!")
         logout();
         signOut(auth)
         .then(() => {

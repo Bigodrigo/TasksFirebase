@@ -32,7 +32,6 @@ export function Login({children}) {
     //com o yup precisa colocar data dentro dos () aqui em cima!!
     //console.log(data);
     setLoading(true);
-    console.log(email,password);
         if(email === '' || password === '') {
             Alert.alert('Algo deu errado!', 'Preencha todos os campos primeiro!');
             console.log('Algo deu errado!', 'Preencha todos os campos primeiro!');
@@ -40,17 +39,12 @@ export function Login({children}) {
             return;
         };
         await signInWithEmailAndPassword(auth, email, password).then(async(userCredential) => {
-          console.log("teste login entrou!");
-          //console.log(uid, 'Entrando no Login')
           let user = userCredential.user;
           const uid = user.uid;
-          //const teste = doc(db,"User", uid).withConverter(userConverter); MUDAR PARA UID!!
           const docRef = doc(db,uid,'Infos').withConverter(userConverter)
           const testeSnap = await getDoc(docRef);
-          //console.log(uid, 'Precisa ter mudado!!')
           if (testeSnap.exists()) {
             const user = testeSnap.data();
-            //console.log(user.toString());
             setCurrentUser({
             email: user.email,
             name: user.name,
@@ -60,7 +54,6 @@ export function Login({children}) {
             setLoading(false);
             login();}
              else {
-            // doc.data() will be undefined in this case
             console.log("No such document!");
           }    
           //talvez precise do return para fechar o constante envio de infos! Aqui ele usa a função setLogin, para carregar?
