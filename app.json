@@ -3,6 +3,7 @@
     "name": "TesteFBAndroid",
     "slug": "TesteFBAndroid",
     "version": "1.0.0",
+    "jsEngine": "hermes",
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -10,6 +11,12 @@
       "eas": {
         "projectId": "e7d53a6e-fd95-4641-9dcf-d427edba5b97"
       }
-    }
+    },
+    "runtimeVersion": "1.0.0",
+    "updates": {
+      "url": "https://u.expo.dev/e7d53a6e-fd95-4641-9dcf-d427edba5b97"
+    },
+    "android": {},
+    "ios": {}
   }
 }

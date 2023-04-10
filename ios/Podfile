@@ -9,6 +9,9 @@ platform :ios, podfile_properties['ios.deploymentTarget'] || '13.0'
 install! 'cocoapods',
   :deterministic_uuids => false
 
+require 'json'
+podfile_properties = JSON.parse(File.read('./Podfile.properties.json')) rescue {}
+
 target 'TesteFBAndroid' do
   use_expo_modules!
   config = use_native_modules!
