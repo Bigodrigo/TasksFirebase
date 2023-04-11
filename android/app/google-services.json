@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:886879977268:android:78b30efc2b632c1dc9af61",
+        "mobilesdk_app_id": "1:886879977268:android:6f6b07cf377a8474c9af61",
         "android_client_info": {
-          "package_name": "com.testefbandroid"
+          "package_name": "com.bigodrigo.TesteFBAndroid"
         }
       },
       "oauth_client": [

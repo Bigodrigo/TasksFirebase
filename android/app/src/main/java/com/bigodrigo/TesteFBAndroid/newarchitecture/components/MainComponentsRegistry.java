@@ -1,4 +1,4 @@
-package com.testefbandroid.newarchitecture.components;
+package com.bigodrigo.TesteFBAndroid.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

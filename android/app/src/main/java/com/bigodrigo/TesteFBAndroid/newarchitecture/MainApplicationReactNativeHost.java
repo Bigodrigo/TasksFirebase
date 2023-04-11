@@ -1,4 +1,4 @@
-package com.testefbandroid.newarchitecture;
+package com.bigodrigo.TesteFBAndroid.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -20,9 +20,9 @@ import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.testefbandroid.BuildConfig;
-import com.testefbandroid.newarchitecture.components.MainComponentsRegistry;
-import com.testefbandroid.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.bigodrigo.TesteFBAndroid.BuildConfig;
+import com.bigodrigo.TesteFBAndroid.newarchitecture.components.MainComponentsRegistry;
+import com.bigodrigo.TesteFBAndroid.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

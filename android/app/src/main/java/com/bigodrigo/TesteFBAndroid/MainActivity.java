@@ -1,4 +1,4 @@
-package com.testefbandroid;
+package com.bigodrigo.TesteFBAndroid;
 
 import android.os.Build;
 import android.os.Bundle;

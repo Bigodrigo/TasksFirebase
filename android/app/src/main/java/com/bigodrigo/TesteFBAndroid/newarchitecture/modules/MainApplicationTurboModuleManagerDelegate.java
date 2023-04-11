@@ -1,4 +1,4 @@
-package com.testefbandroid.newarchitecture.modules;
+package com.bigodrigo.TesteFBAndroid.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

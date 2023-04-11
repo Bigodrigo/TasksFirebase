@@ -12,11 +12,15 @@
         "projectId": "e7d53a6e-fd95-4641-9dcf-d427edba5b97"
       }
     },
-    "runtimeVersion": "1.0.0",
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
     "updates": {
       "url": "https://u.expo.dev/e7d53a6e-fd95-4641-9dcf-d427edba5b97"
     },
-    "android": {},
+    "android": {
+      "package": "com.bigodrigo.TesteFBAndroid"
+    },
     "ios": {}
   }
 }
