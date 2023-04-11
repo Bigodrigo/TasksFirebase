@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Image, Alert } from "react-native";
-import { VStack, NativeBaseProvider, Center, Text, Icon, Pressable } from "native-base";
+import { VStack, NativeBaseProvider, Center, Text, Icon, Pressable, IconButton, Stack } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
 //hook e formulários
 import { useForm, Controller } from "react-hook-form";
@@ -62,6 +62,12 @@ export  function SignUp({children,userNovo,setUserNovo}) {
   return (
     <NativeBaseProvider>
       <VStack flex={1} px={10}>
+        <Stack direction="row" mb="2.5" mt="1.5" space={3}>
+          <IconButton size="lg" variant= "solid" bg={colors.blue_secondary}
+            _icon= {{ as: MaterialIcons, name: "backspace", color:colors.blue_tertiary}}
+            onPress={()=>{setUserNovo(!userNovo)}}
+          />
+        </Stack>
         <Center>
           <Image
             source={require("../../assets/icon_no_bg.png")}

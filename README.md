@@ -10,3 +10,4 @@ No futuro seria interessante terminar o código para gerar um .apk e testar se o
 11/04 - Sofrendo bastante com a mudança do SDK! Neste momento estou tentando enviar para o EAS a configuração de uma build! Importante comentar que existe um guia com os passos! Talvez seja necessário seguir ele, pq as configs são diferentes dos SDKs anteriores!
 Tbm acho relevante comentar q duranto a build, o expo doctor reclamou dos packages  @expo/config-plugins, uma solução é substituir o "overrides"!
 OUtra questão é o expo update, tem q criar o config?!
+Consegui fazer o apk finalizado! Tentar colocar como download no git ou fazer um vídeo!
