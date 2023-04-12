@@ -84,7 +84,7 @@ export function Login({children}) {
     <NativeBaseProvider>
       { userNovo  ? <SignUp userNovo={userNovo} setUserNovo={setUserNovo}/>
       :
-      <VStack flex={1} px={10}>
+      <VStack flex={1} px={10} py={16}>
         <Center>
           <Image
             source={require("../../assets/icon_no_bg.png")}
@@ -130,6 +130,7 @@ export function Login({children}) {
             onPress={handleLogin} 
             disabled={loading} 
             backgroundColor = {colors.blue_tertiary}
+            my={5}
             //aqui no terceiro vídeo ele coloca em 1h um loading, para barrar o envio infinito!
           />
           <Link onPress={()=>resetPassword}>

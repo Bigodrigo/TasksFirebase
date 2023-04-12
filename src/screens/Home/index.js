@@ -12,7 +12,8 @@ import { randomKey } from "../../utils/randomKey";
 import { deleteDoc, doc, serverTimestamp, setDoc, query,getDocs, collectionGroup, withConverter } from "firebase/firestore";
 import { db } from "../../firebase";
 import { CurrentUserContext } from "../../components/Context/User";
-import { taskConverter, TaskFB } from "../../utils/converter"; 
+import { taskConverter, TaskFB } from "../../utils/converter";
+import { removeBarra, recuperaBarra } from "../../utils/scripts"; 
 
 export  function Home ({children}) {
   const [ tasks, setTasks ] = useState([]);
@@ -20,7 +21,7 @@ export  function Home ({children}) {
   const [ newTaskIsVisible, setNewTaskIsVisible ] = useState(false);
   const [ downloadingTasks, setDownloadingTasks ] = useState(true);
   const {uid, name, email, password, setCurrentUser, logado, setLogado, logout} =  useContext(CurrentUserContext);
-  const docID = [];
+  //const docID = [];
 
   async function addNewTask(content) {   
     const taskObject = { 
@@ -29,8 +30,8 @@ export  function Home ({children}) {
       id: randomKey(),
       isFinished: false,
     };
-    const docRef = doc(db,uid,taskObject.content).withConverter(taskConverter)
-    await setDoc(docRef, new TaskFB(taskObject.content,taskObject.date,taskObject.id,taskObject.isFinished)) //sobrescreve!! {[taskObject.content]:taskObject},{merge:true} //,[taskObject.content]),taskObject
+    const docRef = doc(db,uid,removeBarra(taskObject.content)).withConverter(taskConverter)
+    await setDoc(docRef, new TaskFB(removeBarra(taskObject.content),taskObject.date,taskObject.id,taskObject.isFinished)) //sobrescreve!! {[taskObject.content]:taskObject},{merge:true} //,[taskObject.content]),taskObject
       .then(() => {
         setTasks([taskObject, ...tasks])
       });
@@ -48,8 +49,8 @@ export  function Home ({children}) {
       id: randomKey(),
       isFinished:true,
     };
-    const docRef = doc(db,uid,taskObject.content).withConverter(taskConverter)
-    await setDoc(docRef, new TaskFB(taskObject.content,taskObject.date,taskObject.id,taskObject.isFinished),{merge:true}) //sobrescreve!!,{merge:true}
+    const docRef = doc(db,uid,removeBarra(taskObject.content)).withConverter(taskConverter)
+    await setDoc(docRef, new TaskFB(removeBarra(taskObject.content),taskObject.date,taskObject.id,taskObject.isFinished),{merge:true}) //sobrescreve!!,{merge:true}
     .then(() => {
       setFinishedTasks([taskObject, ...newFinishedTasks])
     });
@@ -58,25 +59,29 @@ export  function Home ({children}) {
   async function deleteTask(id) {
     const filter = finishedTasks.filter(item => item.id !== id);
     const taskFiltered = finishedTasks.filter(item => item.id == id);
-    const docRef = doc(db,uid,taskFiltered[0].content)
+    const docRef = doc(db,uid,removeBarra(taskFiltered[0].content))
     await deleteDoc(docRef)
     .then(() => {
       setFinishedTasks(filter);
     });
   };
-  async function fetchData() {
+  async function fetchData() {//if r != INFOS?!
     const q = query(collectionGroup(db,uid));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async (doc) => {
-      docID.push(doc.id)
-      let r = doc.data()
-      const taskObject = {
-        content: r.content,
-        date: r.date,
-        id: r.id,
-        isFinished:r.isFinished,
-      };
-      tasks.push(taskObject);
+      //console.log(doc.id)
+      if (doc.id != "Infos" || undefined) {
+        //docID.push(doc.id)
+        let r = doc.data()
+        //console.log(r)
+        const taskObject = {
+          content: recuperaBarra(r.content),
+          date: r.date,
+          id: r.id,
+          isFinished:r.isFinished,
+        };
+        tasks.push(taskObject);
+      }
     })
     const taskFalse = tasks.filter(item => item.isFinished == false);
     setTasks(taskFalse)

@@ -1,9 +1,12 @@
+import React, { useEffect } from "react";
 import { View, HStack, Spinner, Heading, Center } from 'native-base';
 import { Button } from '../Button';
 import { colors } from '../../styles';
 
-
 export function Loading({fetchData}){
+    useEffect(() => {
+        fetchData()
+      }, []);
     return (
         <View mt={50}>
             <Center>
@@ -13,12 +16,12 @@ export function Loading({fetchData}){
                     Loading
                     </Heading>
                 </HStack>
-                <Button            
+                {/* <Button            
                     title="Buscar Tasks!!" 
                     onPress={()=>fetchData()} 
                     backgroundColor = {colors.blue_tertiary}
                     my={20}
-                />
+                /> */}
             </Center>
         </View>
     )

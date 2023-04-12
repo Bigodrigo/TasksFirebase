@@ -11,3 +11,9 @@ No futuro seria interessante terminar o código para gerar um .apk e testar se o
 Tbm acho relevante comentar q duranto a build, o expo doctor reclamou dos packages  @expo/config-plugins, uma solução é substituir o "overrides"!
 OUtra questão é o expo update, tem q criar o config?!
 Consegui fazer o apk finalizado! Tentar colocar como download no git ou fazer um vídeo!
+
+12/04 - O Firebase não lida tão bem com Barras(/), o banco interpreta como um caminho, então abre pastas dentro de pastas, adicionei um script para substituir!
+O que falta:
+~~Resolver o Fetch sem botão!~~
+Arrumar o Ícone!
+Melhorar as informações sobre cada função e variável!

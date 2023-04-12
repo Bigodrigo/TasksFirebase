@@ -145,7 +145,7 @@ export  function SignUp({children,userNovo,setUserNovo}) {
               />
             )}
           />
-          <Button title="Cadastrar" onPress={handleSubmit(handleSignUp)} backgroundColor = {colors.blue_tertiary} />
+          <Button title="CRIAR" onPress={handleSubmit(handleSignUp)} backgroundColor = {colors.blue_tertiary} />
         </Center>
       </VStack>
     </NativeBaseProvider>
