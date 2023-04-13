@@ -8,7 +8,6 @@ import { Task } from "../../components/Task";
 import { Loading } from "../../components/Loading";
 
 import { randomKey } from "../../utils/randomKey";
-//import do fire deve tá errado!
 import { deleteDoc, doc, serverTimestamp, setDoc, query,getDocs, collectionGroup, withConverter } from "firebase/firestore";
 import { db } from "../../firebase";
 import { CurrentUserContext } from "../../components/Context/User";
@@ -16,6 +15,7 @@ import { taskConverter, TaskFB } from "../../utils/converter";
 import { removeBarra, recuperaBarra } from "../../utils/scripts"; 
 
 export  function Home ({children}) {
+  //Importante! Percebi que o FB não lida bem com / acaba criando pastas no BD, adicionei o script q modifica isso!
   const [ tasks, setTasks ] = useState([]);
   const [ finishedTasks, setFinishedTasks ] = useState([]);
   const [ newTaskIsVisible, setNewTaskIsVisible ] = useState(false);
