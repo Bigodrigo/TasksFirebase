@@ -17,5 +17,5 @@ Consegui fazer o apk finalizado!
 12/04 - O Firebase não lida tão bem com Barras(/), o banco interpreta como um caminho, então abre pastas dentro de pastas, adicionei um script para substituir!
 O que falta:
 - [x] ~~Resolver o Fetch sem botão!~~
-- [ ] Arrumar o Ícone!
+- [x] Arrumar o Ícone!
 - [ ] Melhorar as informações sobre cada função e variável!
