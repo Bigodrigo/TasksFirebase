@@ -18,7 +18,7 @@ Consegui fazer o apk finalizado!
 O que falta:
 - [x] ~~Resolver o Fetch sem botão!~~
 - [x] Arrumar o Ícone!
-- [ ] Adicionar as informações restritas como FB no gitignore?
+- [x] Adicionar as informações restritas como FB no gitignore?
 - [ ] * Melhorar as informações sobre cada função e variável!
         * Rever algumas páginas como o Routes, precisa ou n está sendo usado!
         * ~~Login, recuperar a mensagem funciona? E os Erros?!~~
