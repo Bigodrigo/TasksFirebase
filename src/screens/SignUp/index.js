@@ -17,6 +17,7 @@ import { styles, fonts, colors } from "../../styles";
 import { UserProvider, CurrentUserContext } from "../../components/Context/User";
 import { User, userConverter } from "../../utils/converter";
 
+//Função que controla as informações digitadas para criar o usuário
 const SignUpSchema = yup.object({
   name: yup.string().required("Informe o nome."),
   email: yup.string().required("Informe o e-mail").email("E-mail inválido."),
@@ -38,8 +39,6 @@ export  function SignUp({children,userNovo,setUserNovo}) {
   const {setCurrentUser} = useContext(CurrentUserContext);
 
   function handleSignUp(data) {
-    //console.log(data);
-    //console.log(data.email,data.password);
         if(data.email === '' || data.password === '') {
             Alert.alert('Algo deu errado', 'Preencha todos os campos primeiro!');
             return;
@@ -48,11 +47,9 @@ export  function SignUp({children,userNovo,setUserNovo}) {
             .then(async(userCredential)  => {
               const user = userCredential.user;
               const uid = user.uid;
-              //console.log(uid);
               const docRef = doc(db,uid,'Infos').withConverter(userConverter)
-              await setDoc(docRef, new User(data.email,data.name,data.password,uid))
+              await setDoc(docRef, new User(data.email,data.name,uid))
               setUserNovo(!userNovo)
-              //adicionar logado no context?!
             })
             .catch(error => (
             Alert.alert(error.code, error.message)
@@ -122,7 +119,7 @@ export  function SignUp({children,userNovo,setUserNovo}) {
                 InputRightElement={<Pressable onPress={() => setShow(!show)}>
                 <Icon as={<MaterialIcons
                 name={show ? "visibility" : "visibility-off"} />} size={5} marginRight={5}
-                color={colors.blue_tertiary} // n ficou funcional, voltar aqui
+                color={colors.blue_tertiary}
                 /></Pressable>}
                 />
             )}

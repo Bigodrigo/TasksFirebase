@@ -1,4 +1,4 @@
-//Página pelos vídeos, tentar reproduzir uma página pelo RocketSeat
+//Página de login
 import React, { useContext, useEffect, useState } from "react";
 import { Image, Alert } from "react-native";
 import { VStack, NativeBaseProvider, Center, Text, Icon, Link, Pressable } from "native-base";
@@ -48,7 +48,6 @@ export function Login({children}) {
             setCurrentUser({
             email: user.email,
             name: user.name,
-            password: user.password,
             uid: user.uid,
             });
             setLoading(false);
@@ -56,28 +55,33 @@ export function Login({children}) {
              else {
             console.log("No such document!");
           }    
-          //talvez precise do return para fechar o constante envio de infos! Aqui ele usa a função setLogin, para carregar?
         })
-        .catch(error => 
-          console.log(error),
-          //Alert.alert('Email ou senha inválidos!', 'Verifique as infos!')
+        .catch(error => {
+          console.log(error)
+          Alert.alert('Email ou senha inválidos!', 'Verifique as infos!')
+        }
           );
       };
 
-  function resetPassword() { //código do vídeo
+  function resetPassword() {
     //com o yup precisa colocar data dentro dos () aqui em cima!!
     //console.log(email)
     if(email === '') {
       //o código n está passando por aqui, talvez tenha q definir data email ='' primeiro?!
-      Alert.alert('Algo deu errado!', ' Preencha o campo de email para redefinir nova senha');
+      Alert.alert('Algo deu errado!', 'Preencha o campo de email para redefinir nova senha');
       console.log("Algo deu errado! Preencha o campo de email para redefinir nova senha");
-      return;};
-    sendPasswordResetEmail(auth, email)
-    .then(() => {
-      Alert.alert('Email enviado', 'Olhe seu email para mudar a senha!'),
-      console.log("Enviou email de troca de senha!!")
-  })
-    .catch(error => console.log(error));
+      } else {
+        sendPasswordResetEmail(auth, email)
+        .then(() => {
+          Alert.alert('Email enviado', 'Olhe seu email para mudar a senha!'),
+          console.log("Enviou email de troca de senha!!")
+      })
+      .catch(error => {
+        console.log(error)
+        Alert.alert('Email inválidos!', 'Verifique as infos!')
+      }
+        );
+      }
   };
 
   return ( 
@@ -107,7 +111,7 @@ export function Login({children}) {
             InputRightElement={<Pressable onPress={() => setShow(!show)}>
             <Icon as={<MaterialIcons
             name={show ? "visibility" : "visibility-off"} />} size={5} marginRight={5}
-            color={colors.blue_tertiary} // n ficou funcional, voltar aqui
+            color={colors.blue_tertiary}
             /></Pressable>}
             value={password}
             onChangeText={setPassword}
@@ -119,7 +123,6 @@ export function Login({children}) {
           />
           <Link 
             onPress={()=>setUserNovo(true)}
-            //disabled={loading}
           >
             <Text style={styles.textResetPassword}>
                 Criar uma conta
@@ -131,9 +134,8 @@ export function Login({children}) {
             disabled={loading} 
             backgroundColor = {colors.blue_tertiary}
             my={5}
-            //aqui no terceiro vídeo ele coloca em 1h um loading, para barrar o envio infinito!
           />
-          <Link onPress={()=>resetPassword}>
+          <Link onPress={()=>resetPassword()}>
             <Text  style={styles.textResetPassword}>
                 Esqueceu a Senha?
             </Text>

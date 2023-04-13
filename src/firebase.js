@@ -1,7 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+//testando...
+//import { getFirestore } from "firebase/firestore";
+import {initializeFirestore} from 'firebase/firestore';
 import { useState } from "react";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -18,7 +20,10 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
-const db = getFirestore();
+//const db = getFirestore();
+const db = initializeFirestore(app, {
+  experimentalForceLongPolling: true,
+});
 
 export { app, db, auth }
 

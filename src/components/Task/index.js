@@ -1,3 +1,4 @@
+//Componente ou "caixinhas" onde as informações ficam escritas, é possível arrastar para completar ou deletar as tarefas!
 import React, { useState } from "react";
 import { NativeBaseProvider, Center, VStack, HStack, Text, Button, IconButton, View } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";

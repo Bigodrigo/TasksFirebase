@@ -20,8 +20,7 @@ export  function Home ({children}) {
   const [ finishedTasks, setFinishedTasks ] = useState([]);
   const [ newTaskIsVisible, setNewTaskIsVisible ] = useState(false);
   const [ downloadingTasks, setDownloadingTasks ] = useState(true);
-  const {uid, name, email, password, setCurrentUser, logado, setLogado, logout} =  useContext(CurrentUserContext);
-  //const docID = [];
+  const {uid, name, email, logado, setLogado, logout} =  useContext(CurrentUserContext);
 
   async function addNewTask(content) {   
     const taskObject = { 
@@ -65,15 +64,12 @@ export  function Home ({children}) {
       setFinishedTasks(filter);
     });
   };
-  async function fetchData() {//if r != INFOS?!
+  async function fetchData() {
     const q = query(collectionGroup(db,uid));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async (doc) => {
-      //console.log(doc.id)
       if (doc.id != "Infos" || undefined) {
-        //docID.push(doc.id)
         let r = doc.data()
-        //console.log(r)
         const taskObject = {
           content: recuperaBarra(r.content),
           date: r.date,

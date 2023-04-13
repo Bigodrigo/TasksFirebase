@@ -1,3 +1,4 @@
+//nem lembro se é usado, verificar!!
 import React, { useContext } from 'react'
 import { CurrentUserContext } from '../components/Context/User';
 import { Home } from '../screens/Home';

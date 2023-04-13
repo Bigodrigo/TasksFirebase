@@ -1,5 +1,5 @@
 //por enquanto igual ao vídeo
-//Poderia mudar os styles igual os outros!
+//Componente que adiciona novas tarefas!
 import React, { useState } from "react";
 import { NativeBaseProvider, Center, VStack, HStack, Text, Button, IconButton, Spacer, View } from "native-base";
 //firebase
@@ -27,7 +27,6 @@ export function NewTask ({addNewTask}) {
     return (
             <View style={styles.containerNewTask} >
                 <Input
-                  //provavelmente vai dar errado! Olhar o Login para mudar o onchangetext e value!! Hover!
                   value={task}
                   onChangeText={value=>setTask(value)}
                   placeholder="Qual sua tarefa?"
@@ -35,7 +34,6 @@ export function NewTask ({addNewTask}) {
                   borderWidth = {2} 
                   width = '100%'
                   backgroundColor={'transparent'}
-                  //fontFamily = {fonts.regular}
                   fontSize = {18}
                   placeholderTextColor= {colors.blue_secondary}
                   pb = {5}

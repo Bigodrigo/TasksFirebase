@@ -1,4 +1,4 @@
-//por enquanto igual ao vídeo
+//Um header que aparece dentro da Home
 import React, { useState, useContext } from "react";
 import { Alert } from "react-native";
 import { Text, IconButton, View } from "native-base";
@@ -17,7 +17,7 @@ export function Header ({newTaskIsVisible,setNewTaskIsVisible}) {
         logout();
         signOut(auth)
         .then(() => {
-          Alert.alert('Vc saiu!', 'Deslogou!!'),
+          Alert.alert('Vc saiu!', 'Deslogou!!'),//Simplificar?
           console.log("Vc saiu!")
           return;
       })

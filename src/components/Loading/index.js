@@ -1,3 +1,4 @@
+//Componente que verifica as tarefas no banco de dados e carrega antes da home
 import React, { useEffect } from "react";
 import { View, HStack, Spinner, Heading, Center } from 'native-base';
 import { Button } from '../Button';
@@ -13,15 +14,9 @@ export function Loading({fetchData}){
                 <HStack space={2} justifyContent="center">
                     <Spinner accessibilityLabel="Loading posts" />
                     <Heading color="primary.500" fontSize="md">
-                    Loading
+                    Loading ...
                     </Heading>
                 </HStack>
-                {/* <Button            
-                    title="Buscar Tasks!!" 
-                    onPress={()=>fetchData()} 
-                    backgroundColor = {colors.blue_tertiary}
-                    my={20}
-                /> */}
             </Center>
         </View>
     )
