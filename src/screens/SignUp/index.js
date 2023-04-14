@@ -1,3 +1,4 @@
+//Página de inscrição, usei o yup para controlar os inputs, verificar erros etc!
 import React, { useContext, useState } from "react";
 import { Image, Alert } from "react-native";
 import { VStack, NativeBaseProvider, Center, Text, Icon, Pressable, IconButton, Stack } from "native-base";
@@ -124,7 +125,6 @@ export  function SignUp({children,userNovo,setUserNovo}) {
                 />
             )}
           />
-
           <Controller
             control={control}
             name="password_confirm"
@@ -138,7 +138,6 @@ export  function SignUp({children,userNovo,setUserNovo}) {
                 backgroundColor = {colors.blue_secondary}
                 borderColor = {colors.blue_tertiary}
                 color = {colors.blue_tertiary} 
-                
               />
             )}
           />

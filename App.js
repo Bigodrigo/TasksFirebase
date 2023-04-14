@@ -19,8 +19,6 @@ SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
-  
-  //const {logado, setCurrentUser} = useContext(CurrentUserContext);
   let fontsLoaded = {
     JosefinSans_400Regular,
     JosefinSans_700Bold
@@ -75,9 +73,3 @@ export default function App() {
       </NativeBaseProvider>
   );
 }
-
-/* Comentários?!
-Consegui enviar {children,userNovo,setUserNovo,logado,setLogado} para o SignUp, então quando a pessoa logar já entraria na home!
-Mas desse jeito ela n pega o UID, posso melhorar em outro momento, por hora vou obrigar a voltar pra Login e fazer o Cadastro!! 
-16/01 - Arrumei o SignOut!! Seria interessante colocar mais comentários no código!! Acredito q o android ainda n está 100% Falta arrumar o thema e estilos?!
-*/

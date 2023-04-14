@@ -1,4 +1,4 @@
-//Página de login
+//Página de login uma alteração interessante poderia usar token ou salvar no async storage as informações, evitando obrigar o login toda vez...
 import React, { useContext, useEffect, useState } from "react";
 import { Image, Alert } from "react-native";
 import { VStack, NativeBaseProvider, Center, Text, Icon, Link, Pressable } from "native-base";
@@ -13,7 +13,6 @@ import { CurrentUserContext } from "../../components/Context/User";
 import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { getDoc, doc } from "firebase/firestore";
 import { userConverter } from "../../utils/converter"; 
-//uid aqui ou na home?
 //rotas
 import { SignUp } from "../SignUp";
 
@@ -23,7 +22,6 @@ export function Login({children}) {
   const [loading, setLoading] = useState(false);
   const [show, setShow] = React.useState(false);
   const [userNovo, setUserNovo] = useState(false);
-  //eu estou usando o usercontext direto, o joao usou separado, pode dar erro aqui!!
   const {setCurrentUser, logado, setLogado, login, logout} = useContext(CurrentUserContext);
 
   //Importante: Eu tentei fazer o yup controlar o envio de infos, mas deu errado, vou tirar por h e deixar mais simples!
@@ -137,7 +135,7 @@ export function Login({children}) {
           />
           <Link onPress={()=>resetPassword()}>
             <Text  style={styles.textResetPassword}>
-                Esqueceu a Senha?
+              Esqueceu a Senha?
             </Text>
           </Link>
         </Center>

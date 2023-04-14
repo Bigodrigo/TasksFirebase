@@ -1,4 +1,5 @@
-//Um header que aparece dentro da Home
+//Um header que aparece dentro da Home!
+//Permite fazer logout e adicionar as tarefas (abrindo o NewTask)
 import React, { useState, useContext } from "react";
 import { Alert } from "react-native";
 import { Text, IconButton, View } from "native-base";

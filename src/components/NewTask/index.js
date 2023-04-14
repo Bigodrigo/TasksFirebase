@@ -1,4 +1,3 @@
-//por enquanto igual ao vídeo
 //Componente que adiciona novas tarefas!
 import React, { useState } from "react";
 import { NativeBaseProvider, Center, VStack, HStack, Text, Button, IconButton, Spacer, View } from "native-base";
@@ -14,7 +13,7 @@ export function NewTask ({addNewTask}) {
 
   function AddTaskAction() {
     if(task == '') return;
-
+    //Importante: Cada Task possui um "conteúdo"(o q vc digita), um  id gerado aleatoriamente a data que foi gerada e se está finalizada ou não!
     addNewTask(task);
     setTask('');
   };
