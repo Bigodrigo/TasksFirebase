@@ -2,6 +2,12 @@
 ## (Finalizado) - 14/04/2023
 ### Este Projeto é um Aplicativo Android e Web que possui um registro de contas e login pelo Firebase (banco de dados do google)!
 
+## Sobre o App!
+
+<div align="center">
+<img src="/src/assets/App.gif" width="270" height="555">
+</div>
+
 Dentro do App podemos criar tarefas, colocar elas como concluidas e deletar! Podemos criar uma conta no banco de dados e associar as tarefas a um usuário.
 Se vc quiser testar o aplicativo, basta baixar o [APK](https://github.com/Bigodrigo/testeFBAndroid/blob/main/Apk%20Donwload/application-02c63002-b602-486e-9fac-ac6f36c2bad4.apk).
 Hoje ele funciona somente no Android :upside_down_face: e é necessário confirmar a instalação.
