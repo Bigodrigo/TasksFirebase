@@ -48,8 +48,8 @@ SUUUPER recomendo esse caso, mas isso depende de um conhecimento maior de TI!
 
 **Fico muito feliz com qualquer comentário e espero que vc ache interessante o app, qualquer coisa fico a disposição!**
 
-Algumas referências que foram usadas nesse projeto:
-Playlist utilizada para iniciar o projeto: https://www.youtube.com/playlist?list=PLSdWzeBQ3csG_Gp9PfTNct0WDZr0qYB3z
-Vídeo RocketSeat sobre Yup-React: https://www.youtube.com/watch?v=JEKZc_rkqgc
-Expo (documentos sobre a plataforma que permite construir Apps e Web): https://docs.expo.dev/
-NativeBase (biblioteca de front/design): https://nativebase.io/
+### Algumas referências que foram usadas nesse projeto:
+* [Playlist utilizada para iniciar o projeto](https://www.youtube.com/playlist?list=PLSdWzeBQ3csG_Gp9PfTNct0WDZr0qYB3z)
+* [Vídeo RocketSeat sobre Yup-React](https://www.youtube.com/watch?v=JEKZc_rkqgc)
+* [Expo (documentos sobre a plataforma que permite construir Apps e Web)](https://docs.expo.dev/)
+* [NativeBase (biblioteca de front/design)](https://nativebase.io/)
