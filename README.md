@@ -22,7 +22,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 ## 💻 Projeto
 
 Dentro do App podemos criar tarefas, colocar elas como concluidas e deletar. Podemos criar uma conta no banco de dados e associar as tarefas a um usuário.
-Se vc quiser testar o aplicativo, basta baixar o [APK]().
+Se vc quiser testar o aplicativo, basta baixar o [APK](Apk Donwload/application-02c63002-b602-486e-9fac-ac6f36c2bad4.apk).
 Hoje ele funciona somente no Android :upside_down_face: e é necessário confirmar a instalação.
 É possível ajustar para web, mas durante as atualizações do Expo me concentrei mais em deixar na forma Mobile, outros projetos no git são focados em Web!
 
