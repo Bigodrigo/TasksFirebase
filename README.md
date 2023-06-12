@@ -37,7 +37,6 @@ Bom existem 2 formas!
 A mais simples e recomendada é baixar o apk, instalar e criar uma conta, vc pode usar um email real, até para testar "Esqueci minha senha", ou usar a conta teste:
 Usuário: teste@teste.com
 Senha: 123456
-Como o App não é oficial e não passa pelas Stores o seu android vai colocar como App Suspeito, mas não se preocupe eu não sei ~~(Ainda)~~ mexer em dados sensíveis! :smiling_imp:
 
 Se vc possui o Visual Studio Code instalado e o Android Studio, pode baixar o repositório, instalar os pacotes e rodar internamente! Dessa forma vc pode inclusive alterar as coisas
 Nesse caso basta fazer o clone do git, usar npm install, abrir o emulador de celular e rodar npx expo start selecionando a opção android!
